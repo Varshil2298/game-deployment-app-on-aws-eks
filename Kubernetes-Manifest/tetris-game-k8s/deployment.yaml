@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris-deployment
+spec:
+  replicas: 1  # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: tetris
+  template:
+    metadata:
+      labels:
+        app: tetris
+    spec:
+      containers:
+      - name: tetris-container
+        image: 415916042243.dkr.ecr.us-west-2.amazonaws.com/tetris-ecr-repo:tetris-v1
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: "200m"
+          limits:
+            cpu: "500m"     
